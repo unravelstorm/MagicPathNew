@@ -25,9 +25,17 @@ public class ManagerVars : ScriptableObject {
     /// </summary>
     public List<Sprite> SkinSpriteList = new List<Sprite>();
     /// <summary>
+    /// 获取进行游戏时的皮肤
+    /// </summary>
+    public List<Sprite> SkinPlaySpriteList = new List<Sprite>();
+    /// <summary>
     /// 获取皮肤名字
     /// </summary>
     public List<string> SkinNameList = new List<string>();
+    /// <summary>
+    /// 获取皮肤价格
+    /// </summary>
+    public List<int> SkinPrice = new List<int>();
     /// <summary>
     /// 获取选择的皮肤预制体
     /// </summary>

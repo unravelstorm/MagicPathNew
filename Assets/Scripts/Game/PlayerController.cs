@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D myBody;
     private SpriteRenderer spriteRenderer;
     
-
+    //下个一平台的位置
     private Vector3 nextPlatformLeft, nextPlatformRight;
     private ManagerVars vars;
     private void Awake()
@@ -38,6 +38,16 @@ public class PlayerController : MonoBehaviour {
         myBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         vars = ManagerVars.GetManagerVars();
+        //监听皮肤更换
+        EventCenter.AddListener<int>(EventDefine.ChangeSkin, ChangeSkin);
+    }
+    private void Start()
+    {
+        ChangeSkin(GameManager.Instance.GetSelectedSkin());
+    }
+    private void OnDestroy()
+    {
+        EventCenter.RemoveListener<int>(EventDefine.ChangeSkin, ChangeSkin);
     }
     private void Update()
     {
@@ -204,5 +214,11 @@ public class PlayerController : MonoBehaviour {
             EventCenter.Broadcast(EventDefine.AddDiamond);
             collision.gameObject.SetActive(false);
         }
+    }
+
+    private void ChangeSkin(int index)
+    {
+        spriteRenderer.sprite = vars.SkinPlaySpriteList[index];
+        GameManager.Instance.SetSelectedSkin(index);
     }
 }

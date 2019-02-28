@@ -27,11 +27,17 @@ MonoBehaviour:
   - {fileID: 21300004, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
   - {fileID: 21300008, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
   - {fileID: 21300012, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  SkinPlaySpriteList:
+  - {fileID: 21300002, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  - {fileID: 21300006, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  - {fileID: 21300010, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
+  - {fileID: 21300014, guid: 0c7b4faa2ba890e45a9bcb89c3349cde, type: 3}
   SkinNameList:
   - "\u592E\u683C\u9C81\u4EBA"
   - "\u5FCD\u8005"
   - "\u970D\u6BD4\u7279\u4EBA"
   - "\u5C0F\u50F5\u5C38"
+  SkinPrice: 00000000010000000200000014000000
   SkinChoosePre: {fileID: 5360125494819356825, guid: ec50fc5d18879c44b9aeb3ea117f85e2,
     type: 3}
   chacaterPre: {fileID: 1900093798301608, guid: 3a1504ed41c14c042a7d19c4d61d6867,
