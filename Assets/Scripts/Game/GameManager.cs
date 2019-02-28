@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
@@ -258,5 +259,42 @@ public class GameManager : MonoBehaviour {
 
             Debug.Log(e.Message);
         }
+    }
+
+    /// <summary>
+    /// 重置游戏数据
+    /// </summary>
+    public void ResetGameData()
+    {
+        isFirstGame = false;
+        isMusicOn = true;
+        bestScoreArr = new int[3];
+        selectedSkin = 0;
+        unlockSkin = new bool[vars.SkinSpriteList.Count];
+        unlockSkin[0] = true;
+        diamondCount = 10;
+        GameSave();
+    }
+    /// <summary>
+    /// 保存成绩
+    /// </summary>
+    private void SaveScore(int score)
+    {
+        List<int> list = bestScoreArr.ToList();
+        list.Add(score);
+        //从大到小排序
+        list.Sort((x, y) => (-x.CompareTo(y)));
+        //去除最低分
+        list.Remove(list.Count);
+        bestScoreArr = list.ToArray();
+        GameSave();
+    }
+    /// <summary>
+    /// 获取最高分
+    /// </summary>
+    /// <returns></returns>
+    private int GetBestScore()
+    {
+        return bestScoreArr.Max();
     }
 }

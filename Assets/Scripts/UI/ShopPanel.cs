@@ -178,7 +178,7 @@ public class ShopPanel : MonoBehaviour
         int price = int.Parse(btnSkinBuy.GetComponentInChildren<Text>().text);
         if (price>GameManager.Instance.GetAllDiamond())
         {
-            print("钻石数量不足！");
+            EventCenter.Broadcast(EventDefine.ShowHint);
             return;
         }
         GameManager.Instance.UpdateAllDiamond(-price);

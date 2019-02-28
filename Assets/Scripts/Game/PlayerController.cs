@@ -64,7 +64,8 @@ public class PlayerController : MonoBehaviour {
         {
             return;
         }
-        if (Input.GetMouseButtonDown(0) && !isJumping)
+        //点击鼠标左键，没有正在跳跃，下一个平台数值不为0
+        if (Input.GetMouseButtonDown(0) && !isJumping && nextPlatformLeft != Vector3.zero)
         {
             if (!isStartMove)
             {

@@ -43,7 +43,7 @@ public class GameOverPanel : MonoBehaviour {
     private void ShowGameOverPanel()
     {
         txtScore.text = GameManager.Instance.GetGameScore().ToString();
-        txtDiamondCount.text = GameManager.Instance.GetGameDiamond().ToString();
+        txtDiamondCount.text = "+  " + GameManager.Instance.GetGameDiamond().ToString();
         gameObject.SetActive(true);
     }
     /// <summary>

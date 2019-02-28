@@ -9,6 +9,7 @@ public class MainPanel : MonoBehaviour {
     private Button btnShop;
     private Button btnRank;
     private Button btnSound;
+    private Button btnRetry;
     private ManagerVars vars;
 
 
@@ -28,6 +29,9 @@ public class MainPanel : MonoBehaviour {
         //音乐按钮
         btnSound = transform.Find("Buttons/btn_sound").GetComponent<Button>();
         btnSound.onClick.AddListener(OnSoundButtonClick);
+        //重置数据按钮
+        btnRetry = transform.Find("Buttons/btn_retry").GetComponent<Button>();
+        btnRetry.onClick.AddListener(OnRetryButtonClick);
     }
 
     private void Awake()
@@ -91,6 +95,14 @@ public class MainPanel : MonoBehaviour {
     private void OnSoundButtonClick()
     {
 
+    }
+
+    /// <summary>
+    /// 重置数据按钮点击事件
+    /// </summary>
+    private void OnRetryButtonClick()
+    {
+        EventCenter.Broadcast(EventDefine.ShowRetryPanel);
     }
 
 
