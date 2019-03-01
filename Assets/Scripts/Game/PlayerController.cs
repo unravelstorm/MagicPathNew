@@ -51,10 +51,27 @@ public class PlayerController : MonoBehaviour {
     {
         EventCenter.RemoveListener<int>(EventDefine.ChangeSkin, ChangeSkin);
     }
+    /// <summary>
+    /// 判断点击到的是不是UI
+    /// </summary>
+    /// <param name="mousePosition"></param>
+    /// <returns></returns>
+    private bool IsPointerOverGameObject(Vector2 mousePosition)
+    {
+        //新建点击事件
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        //点击事件的位置
+        eventData.position = mousePosition;
+        List<RaycastResult> list = new List<RaycastResult>();
+        //向点击处发射一条射线
+        EventSystem.current.RaycastAll(eventData, list);
+        //list是射线触碰到的UI个数
+        return list.Count > 0;
+    }
     private void Update()
     {
         //是否点击的是ui
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (IsPointerOverGameObject(Input.mousePosition))
         {
             return;
         }
