@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour {
         //从大到小排序
         list.Sort((x, y) => (-x.CompareTo(y)));
         //去除最低分
-        list.Remove(list.Count);
+        list.RemoveAt(list.Count - 1);
         bestScoreArr = list.ToArray();
         GameSave();
     }
@@ -300,9 +300,33 @@ public class GameManager : MonoBehaviour {
     {
         return bestScoreArr.Max();
     }
-
+    /// <summary>
+    /// 获取排行榜分数
+    /// </summary>
+    /// <returns></returns>
     public int[] GetRankScore()
     {
+        List<int> list = bestScoreArr.ToList();
+        //从大到小排序
+        list.Sort((x, y) => (-x.CompareTo(y)));
+        bestScoreArr = list.ToArray();
         return bestScoreArr;
+    }
+    /// <summary>
+    /// 获取音效是否开启
+    /// </summary>
+    /// <returns></returns>
+    public bool GetIsMusicOn()
+    {
+        return isMusicOn;
+    }
+    /// <summary>
+    /// 设置音效是否开启
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetIsMusicOn(bool value)
+    {
+        isMusicOn = value;
+        GameSave();
     }
 }

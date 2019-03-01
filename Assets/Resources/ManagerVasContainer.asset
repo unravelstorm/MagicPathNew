@@ -65,3 +65,8 @@ MonoBehaviour:
   deathEffect: {fileID: 1790638546272648, guid: e62560033e3a8414b9072687e83de5b2,
     type: 3}
   diamond: {fileID: 1627285891526474, guid: 3af01e5b2165f4c4184d55f1c6335158, type: 3}
+  audioButton: {fileID: 8300000, guid: 43f93bf9979e34d46a862c1fe448a414, type: 3}
+  audioDiamond: {fileID: 8300000, guid: e86d628ae2bb99c43805e503b83ce21e, type: 3}
+  audioFall: {fileID: 8300000, guid: 2c7dc4466a66a8744a217ad78d143749, type: 3}
+  audioHit: {fileID: 8300000, guid: 58036858fa184e44cbeb01894c87e6fa, type: 3}
+  audioJump: {fileID: 8300000, guid: a07e7d5471e1e064fba0717467121bcc, type: 3}

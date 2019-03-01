@@ -157,6 +157,7 @@ public class ShopPanel : MonoBehaviour
     /// </summary>
     private void OnBackButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         gameObject.SetActive(false);
         EventCenter.Broadcast(EventDefine.ShowMainPanel);
     }
@@ -165,6 +166,7 @@ public class ShopPanel : MonoBehaviour
     /// </summary>
     private void OnSkinSelectButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         EventCenter.Broadcast(EventDefine.ChangeSkin, currentSkinIndex);
         EventCenter.Broadcast(EventDefine.ShowMainPanel);
 
@@ -175,6 +177,7 @@ public class ShopPanel : MonoBehaviour
     /// </summary>
     private void OnSkinBuyButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         int price = int.Parse(btnSkinBuy.GetComponentInChildren<Text>().text);
         if (price>GameManager.Instance.GetAllDiamond())
         {

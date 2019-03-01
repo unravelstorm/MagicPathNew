@@ -18,4 +18,6 @@
     ShowRetryPanel,
     SaveScore,
     ShowRankPanel,
+    PlayAudio,
+    SwitchMusic,
 }

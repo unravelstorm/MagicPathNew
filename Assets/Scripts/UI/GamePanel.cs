@@ -9,6 +9,8 @@ public class GamePanel : MonoBehaviour {
     private Text txt_DiamondCount;
     private Text txt_Score;
 
+    private ManagerVars vars;
+
     private void Init()
     {
         btn_Pause = transform.Find("btn_pause").GetComponent<Button>();
@@ -22,6 +24,7 @@ public class GamePanel : MonoBehaviour {
     }
     private void Awake()
     {
+        vars = ManagerVars.GetManagerVars();
         //监听显示面板事件码
         EventCenter.AddListener(EventDefine.ShowGamePanel, Show);
         //监听更新分数文本事件码
@@ -64,6 +67,7 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     private void OnPauseButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         btn_Play.gameObject.SetActive(true);
         btn_Pause.gameObject.SetActive(false);
         //游戏暂停
@@ -76,6 +80,7 @@ public class GamePanel : MonoBehaviour {
     /// </summary>
     private void OnPlayButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         btn_Play.gameObject.SetActive(false);
         btn_Pause.gameObject.SetActive(true);
         //继续游戏

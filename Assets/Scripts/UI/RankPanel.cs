@@ -10,8 +10,11 @@ public class RankPanel : MonoBehaviour
     private List<Text> txtScore;
     private GameObject goDialog;
 
+    private ManagerVars vars;
+
     private void Awake()
     {
+        vars = ManagerVars.GetManagerVars();
         //监听显示排行榜界面
         EventCenter.AddListener(EventDefine.ShowRankPanel,Show);
         //获取返回按钮，并监听
@@ -45,6 +48,7 @@ public class RankPanel : MonoBehaviour
     }
     private void OnBackButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         goDialog.GetComponent<Transform>().DOScale(Vector3.zero, 0.3f).OnComplete(() =>
         {
             gameObject.SetActive(false);

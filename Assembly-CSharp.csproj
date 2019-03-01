@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Game\PlatformManager.cs" />
     <Compile Include="Assets\Scripts\Game\PlatformSpawner.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\UI\AudioManager.cs" />
     <Compile Include="Assets\Scripts\UI\BgTheme.cs" />
     <Compile Include="Assets\Scripts\UI\GameOverPanel.cs" />
     <Compile Include="Assets\Scripts\UI\GamePanel.cs" />

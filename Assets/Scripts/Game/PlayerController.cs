@@ -32,7 +32,9 @@ public class PlayerController : MonoBehaviour {
     
     //下个一平台的位置
     private Vector3 nextPlatformLeft, nextPlatformRight;
+
     private ManagerVars vars;
+
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
@@ -51,9 +53,6 @@ public class PlayerController : MonoBehaviour {
     }
     private void Update()
     {
-        Debug.DrawRay(rayDown.position, Vector2.down * 1f, Color.red);
-        Debug.DrawRay(rayLeft.position, Vector2.left * 0.2f, Color.red);
-        Debug.DrawRay(rayRight.position, Vector2.right * 0.2f, Color.red);
         //是否点击的是ui
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -64,7 +63,7 @@ public class PlayerController : MonoBehaviour {
         {
             return;
         }
-        //点击鼠标左键，没有正在跳跃，下一个平台数值不为0
+        //点击鼠标左键，没有正在跳跃，下一个平台数值不为0(人物已经落到了第一个平台上)
         if (Input.GetMouseButtonDown(0) && !isJumping && nextPlatformLeft != Vector3.zero)
         {
             if (!isStartMove)
@@ -89,6 +88,8 @@ public class PlayerController : MonoBehaviour {
         //游戏结束
         if (myBody.velocity.y < 0 && !IsRayPlatform() && !GameManager.Instance.IsGameOver)//y方向速度小于0，代表往下落,并且没有检测到平台，游戏没有结束
         {
+            //广播音效事件
+            EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioFall);
             //改变spriteRenderer的层级，将人物显示在平台后面
             spriteRenderer.sortingLayerName = "Default";
             //关闭boxcollider，使人物可以掉落下去
@@ -100,6 +101,8 @@ public class PlayerController : MonoBehaviour {
         }
         if (isJumping && IsRayObstacle() && !GameManager.Instance.IsGameOver)//正在跳跃，检测到障碍物，游戏没有结束
         {
+            //广播音效事件
+            EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioHit);
             GameManager.Instance.IsGameOver = true;
             //使人物图片隐藏
             spriteRenderer.enabled = false;
@@ -111,6 +114,8 @@ public class PlayerController : MonoBehaviour {
         }
         if (transform.position.y - Camera.main.transform.position.y < -6 && !GameManager.Instance.IsGameOver)//人物在距离摄像机过远，掉下平台
         {
+            //广播音效事件
+            EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioFall);
             GameManager.Instance.IsGameOver = true;
             StartCoroutine(DelayShowGameOveranel());
         }
@@ -187,6 +192,8 @@ public class PlayerController : MonoBehaviour {
 
     private void Jump()
     {
+        //广播音效事件
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioJump);
         if (isMoveLeft)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -216,6 +223,8 @@ public class PlayerController : MonoBehaviour {
         //吃到钻石
         if (collision.collider.tag == "PickUp")
         {
+            //广播音效事件
+            EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioDiamond);
             EventCenter.Broadcast(EventDefine.AddDiamond);
             collision.gameObject.SetActive(false);
         }

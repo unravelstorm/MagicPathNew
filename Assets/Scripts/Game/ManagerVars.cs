@@ -80,4 +80,13 @@ public class ManagerVars : ScriptableObject {
     /// 钻石
     /// </summary>
     public GameObject diamond;
+    //获取音效
+    public AudioClip audioButton;
+    public AudioClip audioDiamond;
+    public AudioClip audioFall;
+    public AudioClip audioHit;
+    public AudioClip audioJump;
+    //获取音效开关皮肤
+    public Sprite spriteAudioOn;
+    public Sprite spriteAudioOff;
 }

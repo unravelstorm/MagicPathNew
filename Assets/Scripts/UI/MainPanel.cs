@@ -11,6 +11,7 @@ public class MainPanel : MonoBehaviour {
     private Button btnSound;
     private Button btnRetry;
     private ManagerVars vars;
+    private Image imgAudio;
 
 
     private void Init()
@@ -32,6 +33,8 @@ public class MainPanel : MonoBehaviour {
         //重置数据按钮
         btnRetry = transform.Find("Buttons/btn_retry").GetComponent<Button>();
         btnRetry.onClick.AddListener(OnRetryButtonClick);
+        //音效图标
+        imgAudio = transform.Find("Buttons/btn_sound").GetChild(0).GetComponent<Image>();
     }
 
     private void Awake()
@@ -51,6 +54,7 @@ public class MainPanel : MonoBehaviour {
     }
     private void Start()
     {
+        Sound();
         if (GameData.IsAgainGame)
         {
             OnStartButtonClick();
@@ -70,6 +74,7 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnStartButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         GameManager.Instance.IsGameStarted = true;
         EventCenter.Broadcast(EventDefine.ShowGamePanel);
         gameObject.SetActive(false);
@@ -79,6 +84,7 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnShopButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         gameObject.SetActive(false);
         EventCenter.Broadcast(EventDefine.ShowShopPanel);
     }
@@ -87,6 +93,7 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnRankButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         EventCenter.Broadcast(EventDefine.ShowRankPanel);
     }
     /// <summary>
@@ -94,7 +101,9 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnSoundButtonClick()
     {
-
+        GameManager.Instance.SetIsMusicOn(!GameManager.Instance.GetIsMusicOn());
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
+        Sound();
     }
 
     /// <summary>
@@ -102,8 +111,22 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnRetryButtonClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         EventCenter.Broadcast(EventDefine.ShowRetryPanel);
     }
 
-
+    private void Sound()
+    {
+        
+        //如果音效开启
+        if (GameManager.Instance.GetIsMusicOn())
+        {
+            imgAudio.sprite = vars.spriteAudioOn;
+        }
+        else
+        {
+            imgAudio.sprite = vars.spriteAudioOff;
+        }
+        EventCenter.Broadcast(EventDefine.SwitchMusic, GameManager.Instance.GetIsMusicOn());
+    }
 }

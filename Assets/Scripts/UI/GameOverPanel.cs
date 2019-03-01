@@ -10,9 +10,11 @@ public class GameOverPanel : MonoBehaviour {
     //定义再来一局，排行榜，主界面按钮
     private Button btnRestart, btnRank, btnHome;
     private Image imgNew;
+    private ManagerVars vars;
 
     private void Awake()
     {
+        vars = ManagerVars.GetManagerVars();
         Init();
         gameObject.SetActive(false);
         //监听显示游戏结束面板事件
@@ -69,6 +71,7 @@ public class GameOverPanel : MonoBehaviour {
     /// </summary>
     private void OnBtnRestartClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         //重新加载当前Scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //再来一局标识置为true
@@ -79,6 +82,7 @@ public class GameOverPanel : MonoBehaviour {
     /// </summary>
     private void OnBtnRankClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         EventCenter.Broadcast(EventDefine.ShowRankPanel);
     }
     /// <summary>
@@ -86,6 +90,7 @@ public class GameOverPanel : MonoBehaviour {
     /// </summary>
     private void OnBtnHomeClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         //重新加载当前Scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //再来一局标识置为false

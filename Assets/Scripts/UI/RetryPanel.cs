@@ -17,8 +17,10 @@ public class RetryPanel : MonoBehaviour
     private GameObject dialog;
     private Button btnNO;
     private Button btnYes;
+    private ManagerVars vars;
     private void Awake()
     {
+        vars = ManagerVars.GetManagerVars();
         EventCenter.AddListener(EventDefine.ShowRetryPanel, Show);
         //获取游戏内对应元素
         bg = transform.Find("bg").GetComponent<Image>();
@@ -47,6 +49,7 @@ public class RetryPanel : MonoBehaviour
     /// </summary>
     private void OnButtonYesClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         GameManager.Instance.ResetGameData();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -55,6 +58,7 @@ public class RetryPanel : MonoBehaviour
     /// </summary>
     private void OnButtonNoClick()
     {
+        EventCenter.Broadcast(EventDefine.PlayAudio, vars.audioButton);
         bg.DOColor(new Color(bg.color.r, bg.color.g, bg.color.b, 0), 0.3f);
         dialog.transform.DOScale(Vector3.zero, 0.3f).OnComplete(() => {
             gameObject.SetActive(false);
