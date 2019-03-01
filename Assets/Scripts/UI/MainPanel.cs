@@ -87,7 +87,7 @@ public class MainPanel : MonoBehaviour {
     /// </summary>
     private void OnRankButtonClick()
     {
-
+        EventCenter.Broadcast(EventDefine.ShowRankPanel);
     }
     /// <summary>
     /// 声音按钮点击事件  

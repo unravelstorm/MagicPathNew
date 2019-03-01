@@ -17,4 +17,5 @@
     ShowHint,
     ShowRetryPanel,
     SaveScore,
+    ShowRankPanel,
 }

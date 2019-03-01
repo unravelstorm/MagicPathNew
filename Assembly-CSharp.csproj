@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\UI\GamePanel.cs" />
     <Compile Include="Assets\Scripts\UI\Hint.cs" />
     <Compile Include="Assets\Scripts\UI\MainPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\RankPanel.cs" />
     <Compile Include="Assets\Scripts\UI\RetryPanel.cs" />
     <Compile Include="Assets\Scripts\UI\ShopPanel.cs" />
     <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />

@@ -300,4 +300,9 @@ public class GameManager : MonoBehaviour {
     {
         return bestScoreArr.Max();
     }
+
+    public int[] GetRankScore()
+    {
+        return bestScoreArr;
+    }
 }

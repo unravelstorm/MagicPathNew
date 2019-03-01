@@ -79,7 +79,7 @@ public class GameOverPanel : MonoBehaviour {
     /// </summary>
     private void OnBtnRankClick()
     {
-
+        EventCenter.Broadcast(EventDefine.ShowRankPanel);
     }
     /// <summary>
     /// 主界面按钮点击方法
