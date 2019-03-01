@@ -124,6 +124,10 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         //广播显示游戏结束面板事件
         EventCenter.Broadcast(EventDefine.ShowGameOverPanel);
+        //更新所拥有的钻石数量
+        GameManager.Instance.UpdateAllDiamond(GameManager.Instance.GetGameDiamond());
+        //广播保存分数事件码
+        EventCenter.Broadcast<int>(EventDefine.SaveScore, GameManager.Instance.GetGameScore());
     }
     /// <summary>
     /// 上一次碰到的平台

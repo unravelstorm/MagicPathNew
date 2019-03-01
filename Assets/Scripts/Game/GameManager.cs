@@ -107,6 +107,8 @@ public class GameManager : MonoBehaviour {
         EventCenter.AddListener(EventDefine.AddDiamond, AddGameDiamond);
         //监听开始移动事件码
         EventCenter.AddListener(EventDefine.PlayerStartMove, IsPlayerStartMove);
+        //监听保存成绩事件码
+        EventCenter.AddListener<int>(EventDefine.SaveScore, SaveScore);
         GameLoad();
         InitGameData();
     }
@@ -116,6 +118,7 @@ public class GameManager : MonoBehaviour {
         EventCenter.RemoveListener(EventDefine.AddScore, AddGameScore);
         EventCenter.RemoveListener(EventDefine.AddDiamond, AddGameDiamond);
         EventCenter.RemoveListener(EventDefine.PlayerStartMove, IsPlayerStartMove);
+        EventCenter.RemoveListener<int>(EventDefine.SaveScore, SaveScore);
     }
     /// <summary>
     /// 监听开始移动事件码，调用此方法
@@ -293,7 +296,7 @@ public class GameManager : MonoBehaviour {
     /// 获取最高分
     /// </summary>
     /// <returns></returns>
-    private int GetBestScore()
+    public int GetBestScore()
     {
         return bestScoreArr.Max();
     }

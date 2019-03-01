@@ -16,4 +16,5 @@
     /// </summary>
     ShowHint,
     ShowRetryPanel,
+    SaveScore,
 }
